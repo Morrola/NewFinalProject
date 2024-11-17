@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Web.Models.CourseModel>
+
+
+@{
+    ViewBag.Title = "Courses List";
+}
+
+<h2>Courses List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var course in Model)
+            {
+                <tr>
+                    <td>@course.Id</td>
+                    <td>@course.Title</td>
+                    <td>@course.Description</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = course.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = course.Id })
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4" class="text-center">No courses available</td>
+            </tr>
+        }
+    </tbody>
+</table>
